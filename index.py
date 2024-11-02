@@ -10,7 +10,7 @@ app = FastAPI()
 
 # Initialize Whisper model
 model_size = "large-v3"
-model = WhisperModel(model_size, device="gpu", compute_type="int8")
+model = WhisperModel(model_size, device="cpu", compute_type="int8")
 
 @app.post("/transcribe")
 async def transcribe_audio(file: UploadFile = File(...)):
