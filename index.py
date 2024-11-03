@@ -8,6 +8,10 @@ import shutil
 
 app = FastAPI()
 
+@app.get("/")
+async def root():
+    return {"message": "ça fonctionne"}
+
 # Initialize Whisper model
 model_size = "large-v3"
 model = WhisperModel(model_size, device="cpu", compute_type="int8")
