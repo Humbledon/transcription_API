@@ -18,6 +18,7 @@ model = WhisperModel(model_size, device="cpu", compute_type="int8")
 
 @app.post("/transcribe")
 async def transcribe_audio(file: UploadFile = File(...)):
+    print(f"Starting transcription of file: {file.filename}")
     print("Transcribing audio...")
     try:
         # Save uploaded file temporarily
@@ -61,6 +62,8 @@ async def transcribe_audio(file: UploadFile = File(...)):
         
         # Clean up temp file
         os.remove(temp_file)
+        
+        print(f"Finished transcription of file: {file.filename}")
         
         return {
             "execution_time": str(timedelta(seconds=execution_time)),
